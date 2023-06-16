@@ -2,6 +2,7 @@
 
 
 import Container from "../Container";
+import Categories from "./Categories";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UseMenu";
@@ -35,6 +36,7 @@ const Navbar:React.FC<NavbarProps> = ({currentUser}) => {
 
                 </Container>
             </div>
+            <Categories />
         </div>
      );
 }
