@@ -2,7 +2,7 @@ import Container from "./components/Container";
 import ClientOnly from "./components/ClientOnly";
 import EmptyState from "./components/EmptyState";
 import getListings from "./actions/getListings";
-import ListingCard from "./components/listing/ListingCard";
+import ListingCard from "./components/listings/ListingCard";
 import getCurrentUser from "./actions/getCurrentUser";
 
 export default async function Home() {
