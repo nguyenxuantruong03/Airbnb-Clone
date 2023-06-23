@@ -1,8 +1,7 @@
 'use client'
 
 import useCointries from "@/app/hooks/useCountries";
-import { SafeListing, SafeUser } from "@/app/types";
-import { Listing, Reservation } from "@prisma/client";
+import { SafeListing, SafeUser,SafeReservation } from "@/app/types";
 
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
@@ -14,7 +13,7 @@ import Button from "../Button";
 
 interface ListingCardProps{
     data: SafeListing;
-    reservation?:Reservation;
+    reservation?:SafeReservation;
     onAction?:(id:string) => void
     disabled?: boolean;
     actionLabel?: string;
@@ -44,6 +43,11 @@ const ListingCard:React.FC<ListingCardProps> = (
         onAction?.(actionId)
     },[onAction,actionId,disabled])
 
+/* Khối mã này đang sử dụng hook `useMemo` để tính giá niêm yết. Nếu có một
+   đặt trước cho danh sách, nó sẽ trả về `totalprice` của đặt trước. Nếu không, nó
+   sẽ trả về `giá` của dữ liệu niêm yết. Móc `useMemo` được sử dụng để ghi nhớ kết quả của
+   phép tính này để nó chỉ được tính lại khi các giá trị `reservation` hoặc `data.price`
+   thay đổi. */
     const price = useMemo(()=>{
         if(reservation){
             return reservation.totalPrice;
